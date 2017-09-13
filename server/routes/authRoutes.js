@@ -10,7 +10,7 @@ module.exports = app => {
   app.get('/auth/google/callback', passport.authenticate('google'));
 
   app.get(
-    'auth/facebook',
+    '/auth/facebook',
     passport.authenticate('facebook', {
       scope: ['public_profile, email']
     })
