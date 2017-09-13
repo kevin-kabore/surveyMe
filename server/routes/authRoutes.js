@@ -8,15 +8,26 @@ module.exports = app => {
     })
   );
   app.get('/auth/google/callback', passport.authenticate('google'));
+
   app.get(
-    '/auth/facebook',
+    'auth/facebook',
     passport.authenticate('facebook', {
-      scope: ['public_profile', 'email']
+      scope: ['public_profile, email']
     })
   );
-  app.get('auth/facebook/callback', passport.authenticate('facebook'));
 
-  app.get('/api/current-user', (req, res) => {
+  app.get('/auth/facebook/callback', passport.authenticate('facebook'));
+
+  app.get('/error', (req, res) => {
+    res.send('Ann error has occured');
+  });
+
+  app.get('/api/logout', (req, res) => {
+    req.logout();
+    res.send(req.user);
+  });
+
+  app.get('/api/current_user', (req, res) => {
     res.send(req.user);
   });
 };

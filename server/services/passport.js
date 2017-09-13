@@ -17,6 +17,27 @@ passport.deserializeUser((id, done) => {
 });
 
 passport.use(
+  new FacebookStrategy(
+    {
+      clientID: keys.facebookAppID,
+      clientSecret: keys.facebookAppSecret,
+      callbackURL: '/auth/facebook/callback'
+    },
+    (accessToken, refreshToken, profile, done) => {
+      User.findOne({ facebookId: profile.id }).then(existingUser => {
+        if (existingUser) {
+          done(null, existingUser);
+        } else {
+          new User({ facebookId: profile.id }).save().then(user => {
+            done(null, user);
+          });
+        }
+      });
+    }
+  )
+);
+
+passport.use(
   new GoogleStrategy(
     {
       clientID: keys.googleClientID,
@@ -31,27 +52,6 @@ passport.use(
         } else {
           //no recorde make new User
           new User({ googleId: profile.id }).save().then(user => {
-            done(null, user);
-          });
-        }
-      });
-    }
-  )
-);
-
-passport.use(
-  new FacebookStrategy(
-    {
-      clientID: keys.facebookAppID,
-      clientSecret: keys.facebookAppSecret,
-      callbackURL: '/auth/facebook/callback'
-    },
-    (accessToken, refreshToken, profile, done) => {
-      User.fincOne({ facebookId: profile.id }).then(existingUser => {
-        if (existingUser) {
-          done(null, existingUser);
-        } else {
-          new User({ facebookId: profile.id }).save().then(user => {
             done(null, user);
           });
         }
