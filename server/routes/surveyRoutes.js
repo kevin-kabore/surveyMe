@@ -22,6 +22,7 @@ module.exports = app => {
     });
     // Attempt to create and send email
     const mailer = new Mailer(survey, surveyTemplate(survey));
+    mailer.send();
     // Email sent successfully?
     // Save survey
     // Survey handler complete
