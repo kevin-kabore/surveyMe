@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin'); // check if isLoggedin with middleware
 const requireCredits = require('../middlewares/requireCredits'); // check if enough credits with middleware
+const Mailer = require('../services/Mailer');
+const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 
 const Survey = mongoose.model('surveys');
 
@@ -19,6 +21,7 @@ module.exports = app => {
       dateSent: Date.now()
     });
     // Attempt to create and send email
+    const mailer = new Mailer(survey, surveyTemplate(survey));
     // Email sent successfully?
     // Save survey
     // Survey handler complete
