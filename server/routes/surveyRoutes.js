@@ -9,6 +9,10 @@ const Survey = mongoose.model('surveys');
 // define arrow function, and export
 //// import into index.js
 module.exports = app => {
+  app.get('/api/surveys/thanks', (req, res) => {
+    res.send('Thanks for voting!');
+  });
+
   app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
     const { title, subject, body, recipients } = req.body; // recipients is subdocument collection
     // Create new Survey instance
