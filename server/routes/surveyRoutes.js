@@ -9,7 +9,7 @@ const Survey = mongoose.model('surveys');
 // define arrow function, and export
 //// import into index.js
 module.exports = app => {
-  app.post('/api/surveys', requireLogin, requireCredits, (req, res) => {
+  app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
     const { title, subject, body, recipients } = req.body; // recipients is subdocument collection
     // Create new Survey instance
     const survey = new Survey({
@@ -22,12 +22,23 @@ module.exports = app => {
     });
     // Attempt to create and send email
     const mailer = new Mailer(survey, surveyTemplate(survey));
-    mailer.send();
-    // Email sent successfully?
-    // Save survey
+    try {
+      await mailer.send();
+      await survey.save(); // Save survey
+      // deduct credits
+      req.user.credits -= 1;
+      const user = await req.user.save();
+      // send back updated user model
+      // with credits for header in auth reducer
+      res.send(user);
+      // Email sent successfully?
+    } catch (err) {
+      res.status(422).send(err); // unprocessable entity - bad form info
+    }
     // Survey handler complete
   });
 };
+
 //////////////////////////
 // EMAIL CREATION STEPS //
 //////////////////////////
