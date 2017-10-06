@@ -10,13 +10,21 @@ class SurveyNew extends Component {
   //   this.state({ formReview: false });
   // }
   // create-react-app allows for:
-  state = { formReview: false };
-  render() {
+  state = { showFormReview: false };
+
+  renderContent() {
+    if (this.state.showFormReview) {
+      return <SurveyFormReview />;
+    }
+
     return (
-      <div>
-        <SurveyForm />
-      </div>
+      <SurveyForm
+        onSurveySubmit={() => this.setState({ showFormReview: true })}
+      />
     );
+  }
+  render() {
+    return <div>{this.renderContent()}</div>;
   }
 }
 
