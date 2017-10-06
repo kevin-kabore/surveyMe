@@ -42,7 +42,7 @@ class SurveyForm extends Component {
 function validate(values) {
   const errors = {};
 
-  errors.emails = validateEmails(values.emails || '');
+  errors.recipients = validateEmails(values.recipients || '');
   // FILEDS.forEach()
   // destructure properties off of value
   _.each(formFields, ({ name, noValueError }) => {
