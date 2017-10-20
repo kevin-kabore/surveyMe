@@ -37,6 +37,9 @@ module.exports = app => {
       .compact() // Extract null events
       .uniqBy('email', 'surveyId') // extract double responses
       .each(({ surveyId, email, choice }) => {
+        console.log(
+          'surveyId: ' + surveyId + 'email: ' + email + 'choice' + choice
+        );
         Survey.updateOne(
           {
             _id: surveyId,
