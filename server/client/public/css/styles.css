@@ -8,9 +8,11 @@
 
 .nav-link:hover,
 .brand-logo:hover {
-  color: #039be5;
+  color: orange;
 }
-
+.landing-li {
+  color: orange;
+}
 .landing-li:hover {
   color: white;
 }
@@ -18,13 +20,5 @@
   padding-top: 50px;
 }
 .title {
-  color: #039be5;
-}
-
-.survey-card {
-  background-color: #039be5 !important;
-}
-
-.form-field {
-  color: black;
+  color: orange;
 }

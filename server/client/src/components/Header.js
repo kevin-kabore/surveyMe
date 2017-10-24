@@ -43,7 +43,7 @@ class Header extends Component {
         <div className="nav-wrapper grey darken-4">
           <Link
             to={this.props.auth ? '/surveys' : '/'}
-            className="left brand-logo nav-logo"
+            className="left brand-logo orange-text"
             style={{ margin: '0 10px' }}
           >
             SurveyMe
