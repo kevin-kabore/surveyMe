@@ -1,0 +1,30 @@
+.landing {
+  background-image: url('../images/background-image.jpg');
+  background-repeat: no-repeat;
+  height: 100vh;
+  font-family: 'Contrail One', cursive;
+  color: white;
+}
+
+.nav-link:hover,
+.brand-logo:hover {
+  color: #039be5;
+}
+
+.landing-li:hover {
+  color: white;
+}
+.landing > div {
+  padding-top: 50px;
+}
+.title {
+  color: #039be5;
+}
+
+.survey-card {
+  background-color: #039be5 !important;
+}
+
+.form-field {
+  color: black;
+}

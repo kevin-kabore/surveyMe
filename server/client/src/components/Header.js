@@ -11,10 +11,14 @@ class Header extends Component {
       case false:
         return [
           <li key="1">
-            <a href="/auth/google">Login with Google</a>
+            <a className="nav-link" href="/auth/google">
+              LOGIN WITH GOOGLE
+            </a>
           </li>,
           <li key="2">
-            <a href="/auth/facebook">Login with facebook</a>
+            <a className="nav-link" href="/auth/facebook">
+              LOGIN WITH FACEBOOK
+            </a>
           </li>
         ];
       default:
@@ -22,9 +26,13 @@ class Header extends Component {
           <li key="3" style={{ margin: '0 10px' }}>
             <Payments />
           </li>,
-          <li key="5">Credits: {this.props.auth.credits}</li>,
+          <li key="5" style={{ margin: '0 10px' }}>
+            CREDITS: {this.props.auth.credits}
+          </li>,
           <li key="4">
-            <a href="/api/logout">Logout</a>
+            <a className="nav-link" href="/api/logout">
+              LOGOUT
+            </a>
           </li>
         ];
     }
@@ -32,10 +40,11 @@ class Header extends Component {
   render() {
     return (
       <nav>
-        <div className="nav-wrapper">
+        <div className="nav-wrapper grey darken-4">
           <Link
             to={this.props.auth ? '/surveys' : '/'}
-            className="left brand-logo"
+            className="left brand-logo nav-logo"
+            style={{ margin: '0 10px' }}
           >
             SurveyMe
           </Link>
