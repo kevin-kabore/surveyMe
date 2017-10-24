@@ -9,7 +9,7 @@ const Landing = () => {
         </h2>
       </div>
       <div>
-        <h5>The simple tool to help connect with your users for feedback</h5>
+        <h5>The simple tool to collect feeback from your users</h5>
         <br />
         <ul>
           <li key="1">
